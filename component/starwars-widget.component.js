@@ -5,20 +5,24 @@ class StarWarsWidgetElement extends HTMLElement {
         this.attachShadow({mode: 'open'})
     
     this.shadowRoot.innerHTML = `
-    <h1>Hello World</h1>
+    <div>Characteres</div>
     `
     }
 
     fetchAPIData() {
-
+        fetch(`https://miadil.github.io/starwars-api/api/all.json`)
+            .then (res => res.json())
+            .then (res =>
+                console.log(res)
+                )
     }
 
     connectedCallback() {
-
+        this.fetchAPIData();
     }
 
     render() {
-        
+
     }
 
 }
