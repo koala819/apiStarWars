@@ -8,13 +8,17 @@ class StarWarsWidgetElement extends HTMLElement {
     this.shadowRoot.innerHTML = `
         <style>
             img {
-                width: 20%
+                width: 10%;
+            }
+            .starwars-widget {
+                display:flex;
+                flex-direction: row-reverse;
             }
         </style>
         <div class="starwars-widget">
         <p>
         <div id="pictureCharactere"></div>
-        <span id="charactere">Jean</span>
+        <span id="charactere"></span>
         </p>
         </div>
         `
@@ -33,7 +37,7 @@ class StarWarsWidgetElement extends HTMLElement {
                     //console.log(res[i].image)
                     this._charactere[i]=res[i].name
                     this._pictureCharactere[i]=res[i].image
-                    console.log(this._pictureCharactere[i])
+                    //console.log(this._pictureCharactere[i])
                 }
                 this.render()
             })
@@ -45,19 +49,11 @@ class StarWarsWidgetElement extends HTMLElement {
 
     render() {
         for (let i=0; i<this.lengthTable; i++) {
+
+            this.shadowRoot.getElementById('charactere').innerHTML += `<div><img src="${this._pictureCharactere[i]}"> <br>${this._charactere[i]} </div>`
             
-            var img = new Image(200, 200);
-            img.src = this._pictureCharactere[i];
-      
-            var src = this.shadowRoot.getElementById("pictureCharactere");
-            console.log(src)
-            src.appendChild(img);
-            this.shadowRoot.getElementById('charactere').innerHTML += this._charactere[i] + "<br />"
+           
         }
-        /* for (let i=0; i<this.lengthTable; i++) {
-            this.shadowRoot.querySelector('img').src += this._pictureCharactere[i] 
-            this.shadowRoot.querySelector('p #charactere').innerHTML += this._charactere[i] + "<br />"
-        } */
 
     }
 
